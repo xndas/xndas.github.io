@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>初中试题</title>
+</head>
+<body>
+<div id="copy" data-clipboard-text="53b6Oy68j5">
+    <h1 style="text-align:center;font-size:30px"><font face="verdana">请点击下方链接，下载试题</font></h1>
+     <h2 style="text-align:center;font-size:24px"><font face="verdana">关注公众号后回复“密码”可得密码</font></h2>
+    <p style="text-align:center;font-size:30px"><br><br> 
+        <!--可插入一个简单的换行符。-->
+        <a href="http://url.cn/5SawbSo">2018/02/14:语文试题</a>
+        <br><br>
+        <a href="https://share.weiyun.com/8bc1b4e334a6d77dd63596b720e6d89b">2018/02/14:化学试题</a>
+        <br><br>
+        <a href="https://share.weiyun.com/5ncQs7L">2018/05/10:理综试题</a>
+        <br><br>
+        <a href="https://share.weiyun.com/5hAhsyl">2018/05/19:政治时政汇总</a>
+        <br><br>
+        <a href="https://share.weiyun.com/5GQakHh">2018/05/22:石家庄中考一模试题及答案</a>
+        <br><br>
+        <a href="https://share.weiyun.com/5aZaAxL">2018/06/06:张家口邢台中考一模试题及答案</a>
+        <br><br>
+        <a href="https://share.weiyun.com/5Eiwhde">2018/06/19:2013-17河北中考历年听力材料</a>
+        </p>
+</div>
+
+
+<script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+<!--CDNJS 是一个互联网上的JavaScript 资料库-->
+<script>
+     $("body").onclick = copycode();
+     var clipboard1 = new Clipboard('.btn');
+//优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
+clipboard.on('success', function(e) {
+    alert('复制成功!')
+    e.clearSelection();
+});
+clipboard.on('error', function(e) {
+    alert('请选择“拷贝”进行复制!')
+});
+
+    function copycode()
+    {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        {
+            var clipboard = new Clipboard('#copy');
+
+            clipboard.on('success', function (e)
+            {
+                alert("请点击OK／确定/关闭");
+            });
+            clipboard.on('error', function (e)
+            {
+                alert("请点击OK／确定/关闭");
+            });
+        }
+    }
+
+</script>
+</body>
+</html>
