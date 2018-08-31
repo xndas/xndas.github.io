@@ -1,65 +1,68 @@
 <!doctype html>
-<html lang="">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>初中试题</title>
+  <meta charset="utf-8">
+
+  <title>达实雄安</title>
+   <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/styles.css">
+   <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="bmob-min.js"></script>
 </head>
+
 <body>
-<div id="copy" data-clipboard-text="53b6Oy68j5">
-    <h1 style="text-align:center;font-size:30px"><font face="verdana">请点击下方链接，下载试题</font></h1>
-     <h2 style="text-align:center;font-size:24px"><font face="verdana">关注公众号后回复“密码”可得密码</font></h2>
-    <p style="text-align:center;font-size:30px"><br><br> 
-        <!--可插入一个简单的换行符。-->
-        <a href="http://url.cn/5SawbSo">2018/02/14:语文试题</a>
-        <br><br>
-        <a href="https://share.weiyun.com/8bc1b4e334a6d77dd63596b720e6d89b">2018/02/14:化学试题</a>
-        <br><br>
-        <a href="https://share.weiyun.com/5ncQs7L">2018/05/10:理综试题</a>
-        <br><br>
-        <a href="https://share.weiyun.com/5hAhsyl">2018/05/19:政治时政汇总</a>
-        <br><br>
-        <a href="https://share.weiyun.com/5GQakHh">2018/05/22:石家庄中考一模试题及答案</a>
-        <br><br>
-        <a href="https://share.weiyun.com/5aZaAxL">2018/06/06:张家口邢台中考一模试题及答案</a>
-        <br><br>
-        <a href="https://share.weiyun.com/5Eiwhde">2018/06/19:2013-17河北中考历年听力材料</a>
-        </p>
-</div>
-
-
-<script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-<!--CDNJS 是一个互联网上的JavaScript 资料库-->
-<script>
-     $("body").onclick = copycode();
-     var clipboard1 = new Clipboard('.btn');
-//优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
-clipboard.on('success', function(e) {
-    alert('复制成功!')
-    e.clearSelection();
-});
-clipboard.on('error', function(e) {
-    alert('请选择“拷贝”进行复制!')
-});
-
-    function copycode()
-    {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
-        {
-            var clipboard = new Clipboard('#copy');
-
-            clipboard.on('success', function (e)
-            {
-                alert("请点击OK／确定/关闭");
-            });
-            clipboard.on('error', function (e)
-            {
-                alert("请点击OK／确定/关闭");
-            });
-        }
+  <div>
+    <h1 style="text-align:center;font-size:30px"><font face="verdana">展厅预约请填写以下信息</font></h1>
+    <p style="text-align:center;font-size:30px"><br> 
+      <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2>  
+       <input type="text" id="danwei" /><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
+       <input type="text" id="zhi" /><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访总人数</font></h2>  
+       <input type="text" id="renshu" /><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">联系人姓名</font></h2>  
+       <input type="text" id="lianxi" /><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">联系电话</font></h2>  
+       <input type="text" id="lianxidianhua" /><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">备注</font></h2>  
+       <input type="text" id="xinxi" /><br><br>
+       <button name="提交" id="send">提交</button> 
+    </p>
+  </div>   
+  
+  <script type="text/javascript">
+  Bmob.initialize("9ee138fc874f3be4c788fcd56c79cdf0", "95eff3285c6000918d57eaf052bdc9a7");
+ 
+  function print(){
+    var a=$("#danwei").val();
+    var b=$("#zhi").val();
+    var c=$("#renshu").val();
+    var d=$("#lianxi").val();
+    var e=$("#lianxidianhua").val();
+    var f=$("#xinxi").val();
+    if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0|| f.length == 0){ 
+        alert("请输入所有信息！");
+    }else{
+      var GameScore = Bmob.Object.extend("GameScore");
+      var gameScore = new GameScore();
+      gameScore.set("laifangdanwei",$("#danwei").val())
+      gameScore.set("zhiwei",$("#zhi").val())
+      gameScore.set("laifangrenshu",$("#renshu").val())
+      gameScore.set("lianxiren",$("#lianxi").val())
+      gameScore.set("dianhua",$("#lianxidianhua").val())
+      gameScore.set("beizhu",$("#xinxi").val())
+      gameScore.save(null, {
+      success: function(object) {
+      },
+      error: function(model, error) {
+      }
+    });
+      alert("您已成功提交，关闭此对话框后请等待5秒，然后点击左上角返回");
+      }
     }
-
-</script>
+     $("#send").click(function(){
+       print();
+    });
+    
+  </script>
 </body>
 </html>
