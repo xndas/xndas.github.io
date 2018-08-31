@@ -56,7 +56,11 @@
       error: function(model, error) {
       }
     });
-      alert("您已成功提交，关闭此对话框后请等待5秒，然后点击左上角返回");
+      function openWin() {
+        var myWindow = window.open("", "", "width=200, height=100");
+        myWindow.document.write("<p>这是一个新窗口'</p>");
+        setTimeout(function(){ myWindow.close() }, 3000);
+        }
       }
     }
      $("#send").click(function(){
