@@ -46,7 +46,15 @@
     var e=$("#lianxidianhua").val();
     var f=$("#xinxi").val();
     if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0){ 
-        alert("请输入所有信息！");
+        window.alert = function(name){
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+        };
+        alert('请填写必要信息！');
     }else{
       var GameScore = Bmob.Object.extend("GameScore");
       var gameScore = new GameScore();
@@ -67,7 +75,15 @@
          setTimeout('delayer()', 3000);
        //这里实现延迟3秒跳转
        });
-      alert("提交成功！");
+      window.alert = function(name){
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+        };
+      alert('提交成功！');
       }
     }
      $("#send").click(function(){
