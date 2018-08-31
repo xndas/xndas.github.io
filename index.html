@@ -6,7 +6,8 @@
    <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/styles.css">
    <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="bmob-min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/leancloud-realtime@4.2.0/dist/realtime.browser.min.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,13 @@
   </div>   
   
   <script type="text/javascript">
-  Bmob.initialize("9ee138fc874f3be4c788fcd56c79cdf0", "95eff3285c6000918d57eaf052bdc9a7");
+  var APP_ID = 'og4vaNvpAkKo9q3AYwGnflAk-gzGzoHsz';
+  var APP_KEY = 'Ej2yeEnqLJl1HcVVutKjkanW';
+
+  AV.init({
+      appId: APP_ID,
+      appKey: APP_KEY
+  });
   function delayer(){
     window.location = "https://xndas.github.io/wancheng/";
   }
@@ -56,26 +63,17 @@
         };
         alert('请填写必要信息！');
     }else{
-      var GameScore = Bmob.Object.extend("GameScore");
-      var gameScore = new GameScore();
-      gameScore.set("shijian",$("#myLocalDate").val())
-      gameScore.set("laifangdanwei",$("#danwei").val())
-      gameScore.set("zhiwei",$("#zhi").val())
-      gameScore.set("laifangrenshu",$("#renshu").val())
-      gameScore.set("lianxiren",$("#lianxi").val())
-      gameScore.set("dianhua",$("#lianxidianhua").val())
-      gameScore.set("beizhu",$("#xinxi").val())
-      gameScore.save(null, {
-      success: function(object) {
-      },
-      error: function(model, error) {
-      }
-    });
-      jQuery(document).ready(function(){
-         setTimeout('delayer()', 3000);
-       //这里实现延迟3秒跳转
-       });
-      window.alert = function(name){
+      var Dasguide = AV.Object.extend("Dasguide");
+      var dasguide = new Dasguide();
+      dasguide.set("shijian",$("#myLocalDate").val())
+      dasguide.set("laifangdanwei",$("#danwei").val())
+      dasguide.set("zhiwei",$("#zhi").val())
+      dasguide.set("laifangrenshu",$("#renshu").val())
+      dasguide.set("lianxiren",$("#lianxi").val())
+      dasguide.set("dianhua",$("#lianxidianhua").val())
+      dasguide.set("beizhu",$("#xinxi").val())
+      dasguide.save().then(function() {
+        window.alert = function(name){
         var iframe = document.createElement("IFRAME");
         iframe.style.display="none";
         iframe.setAttribute("src", 'data:text/plain,');
@@ -84,6 +82,13 @@
         iframe.parentNode.removeChild(iframe);
         };
       alert('提交成功！');
+      }, function(error) {
+      alert(JSON.stringify(error));
+      });
+      jQuery(document).ready(function(){
+         setTimeout('delayer()', 3000);
+       //这里实现延迟3秒跳转
+       });
       }
     }
      $("#send").click(function(){
