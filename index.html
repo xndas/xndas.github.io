@@ -31,7 +31,10 @@
   
   <script type="text/javascript">
   Bmob.initialize("9ee138fc874f3be4c788fcd56c79cdf0", "95eff3285c6000918d57eaf052bdc9a7");
- 
+  function delayer(){
+    window.location = "https://xndas.github.io/wancheng/";
+  }
+
   function print(){
     var a=$("#danwei").val();
     var b=$("#zhi").val();
@@ -56,11 +59,11 @@
       error: function(model, error) {
       }
     });
-      function openWin() {
-        var myWindow = window.open("", "", "width=200, height=100");
-        myWindow.document.write("<p>这是一个新窗口'</p>");
-        setTimeout(function(){ myWindow.close() }, 3000);
-        }
+      jQuery(document).ready(function(){
+         setTimeout('delayer()', 3000);
+       //这里实现延迟3秒跳转
+       });
+      alert("提交成功！");
       }
     }
      $("#send").click(function(){
