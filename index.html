@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>达实雄安1</title>
+  <title>达实雄安</title>
    <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/styles.css">
    <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,8 +13,8 @@
   <div>
     <h1 style="text-align:center;font-size:30px"><font face="verdana">展厅预约请填写以下信息</font></h1>
     <p style="text-align:center;font-size:30px">
-      <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2>  
-       <input type="text" id="danwei" /><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访时间</font></h2> <input type="datetime-local" id="myLocalDate" value="2018-01-01T15:00:00" /><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> <input type="text" id="danwei" /><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
        <input type="text" id="zhi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访总人数</font></h2>  
@@ -36,17 +36,19 @@
   }
 
   function print(){
+    var z=$("#myLocalDate").val();
     var a=$("#danwei").val();
     var b=$("#zhi").val();
     var c=$("#renshu").val();
     var d=$("#lianxi").val();
     var e=$("#lianxidianhua").val();
     var f=$("#xinxi").val();
-    if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0|| f.length == 0){ 
+    if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0){ 
         alert("请输入所有信息！");
     }else{
       var GameScore = Bmob.Object.extend("GameScore");
       var gameScore = new GameScore();
+      gameScore.set("shijian",$("#myLocalDate").val())
       gameScore.set("laifangdanwei",$("#danwei").val())
       gameScore.set("zhiwei",$("#zhi").val())
       gameScore.set("laifangrenshu",$("#renshu").val())
