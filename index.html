@@ -62,6 +62,8 @@
     var d=$("#lianxi").val();
     var e=$("#lianxidianhua").val();
     var f=$("#xinxi").val();
+    var g=new Date();
+    var h=g.toLocaleDateString();
     if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0){ 
        messagess();
        alert('请填写必要信息！');
@@ -75,6 +77,7 @@
       dashiguides.set("5",$("#renshu").val())//人数
       dashiguides.set("6",$("#lianxidianhua").val())//电话
       dashiguides.set("7",$("#xinxi").val())//备注
+      dashiguides.set("8",h)//备注
       dashiguides.save().then(function() {
         messagess();
         alert('提交成功！');
