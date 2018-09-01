@@ -66,15 +66,15 @@
         messagess();
         alert('请填写必要信息！');
     }else{
-      var Dasguide = AV.Object.extend("Dasguide");
-      var dasguide = new Dasguide();
-      dasguide.set("shijian",$("#myLocalDate").val())
-      dasguide.set("laifangdanwei",$("#danwei").val())
-      dasguide.set("zhiwei",$("#zhi").val())
-      dasguide.set("laifangrenshu",$("#renshu").val())
-      dasguide.set("lianxiren",$("#lianxi").val())
-      dasguide.set("dianhua",$("#lianxidianhua").val())
-      dasguide.set("beizhu",$("#xinxi").val())
+      var Dasguides = AV.Object.extend("Dasguides");
+      var dasguides = new Dasguides();
+      dasguide.set("BeiZhu",$("#xinxi").val())
+      dasguide.set("ShiJian",$("#myLocalDate").val())
+      dasguide.set("LaiFangDanWei",$("#danwei").val())
+      dasguide.set("ZhiWei",$("#zhi").val())
+      dasguide.set("LaiFangRenShu",$("#renshu").val())
+      dasguide.set("DianHua",$("#lianxidianhua").val())
+      dasguide.set("LianXiRen",$("#lianxi").val())
       dasguide.save().then(function() {
         messagess();
         alert('提交成功！');
