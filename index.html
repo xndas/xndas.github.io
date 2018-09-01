@@ -43,6 +43,16 @@
   function delayer(){
     window.location = "https://xndas.github.io/wancheng/";
   }
+  function messagess(){
+  	window.alert = function(name){
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+        };
+  }
 
   function print(){
     var z=$("#myLocalDate").val();
@@ -53,14 +63,7 @@
     var e=$("#lianxidianhua").val();
     var f=$("#xinxi").val();
     if (a.length == 0 || b.length == 0 || c.length == 0 || d.length == 0|| e.length == 0){ 
-        window.alert = function(name){
-        var iframe = document.createElement("IFRAME");
-        iframe.style.display="none";
-        iframe.setAttribute("src", 'data:text/plain,');
-        document.documentElement.appendChild(iframe);
-        window.frames[0].window.alert(name);
-        iframe.parentNode.removeChild(iframe);
-        };
+        messagess();
         alert('请填写必要信息！');
     }else{
       var Dasguide = AV.Object.extend("Dasguide");
@@ -73,15 +76,8 @@
       dasguide.set("dianhua",$("#lianxidianhua").val())
       dasguide.set("beizhu",$("#xinxi").val())
       dasguide.save().then(function() {
-        window.alert = function(name){
-        var iframe = document.createElement("IFRAME");
-        iframe.style.display="none";
-        iframe.setAttribute("src", 'data:text/plain,');
-        document.documentElement.appendChild(iframe);
-        window.frames[0].window.alert(name);
-        iframe.parentNode.removeChild(iframe);
-        };
-      alert('提交成功！');
+        messagess();
+        alert('提交成功！');
       }, function(error) {
       alert(JSON.stringify(error));
       });
