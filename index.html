@@ -68,24 +68,24 @@
        messagess();
        alert('请填写必要信息！');
     }else{
-      var Dashiguides = AV.Object.extend("Dashiguides");
-      var dashiguides = new Dashiguides();
-      dashiguides.set("1",$("#lianxi").val())//联系人
-      dashiguides.set("2",$("#myLocalDate").val())//参观时间
-      dashiguides.set("3",$("#danwei").val())//单位
-      dashiguides.set("4",$("#zhi").val())//职位
-      dashiguides.set("5",$("#renshu").val())//人数
-      dashiguides.set("6",$("#lianxidianhua").val())//电话
-      dashiguides.set("7",$("#xinxi").val())//备注
-      dashiguides.set("8",h)//备注
-      dashiguides.save().then(function() {
+      var Dashiguider = AV.Object.extend("Dashiguider");
+      var dashiguider = new Dashiguider();
+      dashiguider.set("1",$("#lianxi").val())//联系人
+      dashiguider.set("2",$("#myLocalDate").val())//参观时间
+      dashiguider.set("3",$("#danwei").val())//单位
+      dashiguider.set("4",$("#zhi").val())//职位
+      dashiguider.set("5",$("#renshu").val())//人数
+      dashiguider.set("6",$("#lianxidianhua").val())//电话
+      dashiguider.set("7",$("#xinxi").val())//备注
+      dashiguider.set("8",h)//备注
+      dashiguider.save().then(function() {
         messagess();
         alert('提交成功！');
       }, function(error) {
       alert(JSON.stringify(error));
       });
       jQuery(document).ready(function(){
-         setTimeout('delayer()', 3000);
+         setTimeout('delayer()', 2000);
        //这里实现延迟3秒跳转
        });
       }
