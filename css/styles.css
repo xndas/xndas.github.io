@@ -4,6 +4,10 @@ body {
     padding: 0 25px;
 }
 
+div {
+    vertical-align: middle;
+}
+
 #main {
     width: 500px;
     margin: auto;

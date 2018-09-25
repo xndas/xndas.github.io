@@ -3,10 +3,15 @@
   <meta charset="utf-8">
   <title>雄安达实智慧城市展厅</title>
    <meta name="viewport" content="width=device-width">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css">
    <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/leancloud-realtime@4.2.0/dist/realtime.browser.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+   <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 <body>
   <div>
@@ -17,9 +22,9 @@
        <h2 style="text-align:center;font-size:15px"><font face="verdana">联系人姓名</font></h2>  
        <input type="text" id="lianxi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访时间</font></h2> 
-       <h2 style="text-align:center;font-size:8px"><font face="verdana">（不可预约当天时间）</font></h2>
-       <input type="datetime-local" id="myLocalDate" value="2018-09-01T15:00:00" /><br>
-       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> <input type="text" id="danwei" /><br>
+       <input type="text" value="" id="datetimepicker"  class="form_datetime" data-date-format="yyyy-mm-dd hh:ii"><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> 
+       <input type="text" id="danwei" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
        <input type="text" id="zhi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访总人数</font></h2>  
@@ -36,7 +41,22 @@
   <script type="text/javascript">
   var APP_ID = 'og4vaNvpAkKo9q3AYwGnflAk-gzGzoHsz';
   var APP_KEY = 'Ej2yeEnqLJl1HcVVutKjkanW';
+  var today = new Date();
+  var tomorrow = new Date();
+  var maxdate = new Date();
+  tomorrow.setDate(today.getDate()+1);
+  maxdate.setDate(today.getDate()+30);
+  tomorrow.setHours(0);
+  maxdate.setHours(0);
 
+  $('#datetimepicker').datetimepicker({
+    startDate: tomorrow,
+    minuteStep: 30,
+    endDate: maxdate,
+    initialDate: tomorrow,
+    language: "zh-CN"
+  });
+  
   AV.init({
       appId: APP_ID,
       appKey: APP_KEY
@@ -55,7 +75,7 @@
         };
   }
   function print(){
-    var z=$("#myLocalDate").val();
+    var z=$("#datetimepicker").val();
     var a=$("#danwei").val();
     var b=$("#zhi").val();
     var c=$("#renshu").val();
@@ -69,7 +89,7 @@
       var Ourguests = AV.Object.extend("Ourguests");
       var ourguests = new Ourguests();
       ourguests.set("1",$("#lianxi").val())
-      ourguests.set("2",$("#myLocalDate").val())
+      ourguests.set("2",$("#datetimepicker").val())
       ourguests.set("3",$("#danwei").val())
       ourguests.set("4",$("#zhi").val())
       ourguests.set("5",$("#renshu").val())
